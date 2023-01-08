@@ -1,4 +1,4 @@
-
+import * as THREE from 'three'
 
 const scene = new THREE.Scene()
 const canvas = document.querySelector(".webgl")
@@ -9,6 +9,8 @@ const cubeMaterial = new THREE.MeshBasicMaterial({
     color: '#ff0000'
 })
 const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial)
+cubeMesh.position.set(2,-1,0)
+cubeMesh.scale.set(1,1.5,1)
 scene.add(cubeMesh)
 
 const sizes = {
@@ -19,14 +21,17 @@ const sizes = {
 //camera
 const camera = new THREE.PerspectiveCamera(100, sizes.width / sizes.height)
 camera.position.z = 3
+// camera.position.y = 1
+// camera.position.x = 1
 scene.add(camera)
 
-//renderer
-
+//Axes helper
+const axesHelper = new THREE.AxesHelper()
+scene.add(axesHelper);
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
-    canvas: canvas
+    canvas: canvas!
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.render(scene, camera)
